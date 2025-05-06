@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Interesting Places in the World</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      padding: 20px;
+      margin: 0;
+      transition: background-color 0.5s ease, color 0.5s ease;
+    }
+
+    .dark-mode {
+      background-color: #1e1e1e;
+      color: #f0f0f0;
+    }
+
+    h1, h2 {
+      text-align: center;
+      animation: fadeIn 1.5s ease-out;
+    }
+
+    p.intro {
+      max-width: 800px;
+      margin: 10px auto 40px;
+      text-align: center;
+      font-size: 1.1em;
+      line-height: 1.6;
+    }
+
+    .btn {
+      display: block;
+      margin: 0 auto 30px;
+      padding: 10px 20px;
+      font-size: 16px;
+      background-color: #3498db;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    .btn:hover {
+      background-color: #2c80b4;
+    }
+
+    .places {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 25px;
+      justify-content: center;
+    }
+
+    .card {
+      width: 280px;
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+      background-color: #f9f9f9;
+      transition: transform 0.3s ease;
+      cursor: pointer;
+    }
+
+    .dark-mode .card {
+      background-color: #333;
+    }
+
+    .card:hover {
+      transform: scale(1.05);
+    }
+
+    .card img {
+      width: 100%;
+      height: 180px;
+      object-fit: cover;
+      transition: transform 0.3s ease;
+    }
+
+    .card-content {
+      padding: 15px;
+    }
+
+    .card h3 {
+      margin-top: 0;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(-20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes bounce {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.1); }
+      100% { transform: scale(1); }
+    }
+
+    .bounce {
+      animation: bounce 0.4s;
+    }
+    .footer {
+      margin-top: 60px;
+      padding: 20px;
+      background-color: #3498db;
+      color: white;
+      text-align: center;
+      font-size: 0.95em;
+      border-top-left-radius: 15px;
+      border-top-right-radius: 15px;
+      transition: background-color 0.4s ease;
+    }
+
+    .footer a {
+      color: #fff;
+      text-decoration: underline;
+      transition: color 0.3s ease;
+    }
+
+    .footer a:hover {
+      color: #d1e9ff;
+    }
+
+    .dark-mode .footer {
+      background-color: #2c3e50;
+    }
+
+  </style>
+</head>
+<body>
+
+  <h1>Interesting Places in the World</h1>
+  <p class="intro">
+    Our world is full of breathtaking locations, each offering its own unique charm, mystery, and beauty.
+    From ancient ruins high in the Andes to architectural wonders in Europe and Asia, these places tell stories of
+    culture, history, and nature. Below are some of the most fascinating destinations you should know about.
+  </p>
+
+  <button class="btn" onclick="toggleTheme()">Toggle Light/Dark Mode</button>
+
+  <div class="places">
+
+    <div class="card" onclick="bounceCard(this)">
+      <img src="pics/Great_wall_china.jpg" alt="Great Wall">
+      <div class="card-content">
+        <h3>Great Wall of China</h3>
+        <p>A massive structure stretching over 13,000 miles, the Great Wall was built to protect ancient China from invasions and now stands as a symbol of resilience and engineering marvel.</p>
+      </div>
+    </div>
+
+    <div class="card" onclick="bounceCard(this)">
+      <img src="pics/Machu_Picchu_Peru.jpg" alt="Machu Picchu">
+      <div class="card-content">
+        <h3>Machu Picchu, Peru</h3>
+        <p>Located high in the Andes Mountains, this 15th-century Incan citadel is famed for its mysterious origins, stunning terraces, and breathtaking panoramic views.</p>
+      </div>
+    </div>
+
+    <div class="card" onclick="bounceCard(this)">
+      <img src="pics/Eiffel_Tower_France.jpg" alt="Eiffel Tower">
+      <div class="card-content">
+        <h3>Eiffel Tower, France</h3>
+        <p>A global icon of love and innovation, the Eiffel Tower in Paris is visited by millions every year who marvel at its iron lattice and climb to its observation decks.</p>
+      </div>
+    </div>
+
+    <div class="card" onclick="bounceCard(this)">
+      <img src="pics/Taj_Mahal_India.jpg" alt="Taj Mahal">
+      <div class="card-content">
+        <h3>Taj Mahal, India</h3>
+        <p>Constructed in the 1600s by Emperor Shah Jahan, the Taj Mahal is a white marble mausoleum and UNESCO World Heritage Site known for its romantic backstory and symmetry.</p>
+      </div>
+    </div>
+
+  </div>
+
+  <script>
+    // Load theme from localStorage
+    document.addEventListener("DOMContentLoaded", () => {
+      const theme = localStorage.getItem("theme");
+      if (theme === "dark") {
+        document.body.classList.add("dark-mode");
+      }
+    });
+
+    // Toggle theme and store preference
+    function toggleTheme() {
+      document.body.classList.toggle("dark-mode");
+      const isDark = document.body.classList.contains("dark-mode");
+      localStorage.setItem("theme", isDark ? "dark" : "light");
+    }
+
+    // Bounce animation on card click
+    function bounceCard(element) {
+      element.classList.add("bounce");
+      setTimeout(() => {
+        element.classList.remove("bounce");
+      }, 400);
+    }
+  </script>
+  <footer class="footer">
+    <p>🌍 Created by Cornelius Wekesa | Discover the world, one place at a time.</p>
+    <p>📧 Contact: <a href="mailto: crnlswekesa@gmail.com">crnlswekesa@gmail.com</a></p>
+  </footer>
+</body>
+</html>
